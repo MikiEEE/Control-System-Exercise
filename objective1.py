@@ -12,7 +12,7 @@ from algorithms import find_threshold_recursive,find_threshold_iterative, \
 
 
 
-
+#Rounding issue, ceiling up
 
 
 
@@ -28,39 +28,45 @@ df['Date'] = pd.to_datetime(df.Date, format='%Y-%m-%d %H:%M:%S')
 
 startDate = df.Date.iloc[1]
 endDate = df.Date.iloc[-1]
-
+count = 1
+times = 0.0
 currentDate = startDate
 while currentDate.strftime('%Y-%m') != endDate.strftime('%Y-%m'):
 	data = df.loc[(df.Date.dt.month==currentDate.month) & (df.Date.dt.year==currentDate.year)].Usage
 
 	start = time.time()
 	threshold = round(find_threshold_recursive(data,100,.001),3)
-	print(currentDate.strftime('%Y-%m'), threshold, time.time() - start,'seconds')
+	times  += time.time() - start
+	print(count,currentDate.strftime('%Y-%m'), threshold, time.time() - start,'seconds')
 	
 	currentDate = (currentDate + pd.offsets.MonthBegin()).date()
+	count += 1
 
-print('\n\n\n\n\n')
-
+print(times,'\n\n\n\n\n')
+count = 1
 currentDate = startDate
+times = 0.0
 while currentDate.strftime('%Y-%m') != endDate.strftime('%Y-%m'):
 	data = df.loc[(df.Date.dt.month==currentDate.month) & (df.Date.dt.year==currentDate.year)].Usage
 
 	start = time.time()
 	kwh_needed = round(find_minimum_capacity_iterative(data,20,.001,10),3)
-	print(currentDate.strftime('%Y-%m'),kwh_needed, time.time() - start)
+	times  += time.time() - start
+	print(count, currentDate.strftime('%Y-%m'),kwh_needed, time.time() - start)
 
 	currentDate = (currentDate + pd.offsets.MonthBegin()).date()
+	count += 1
 
 
 #Need to string battery results together
 
-print('\n\n\n\n\n')
+print(times,'\n\n\n\n\n')
 
 data = df.Usage
 
 start = time.time()
 kwh_needed = round(find_minimum_capacity_recursive(data,50,.001,10),3)
-print(currentDate.strftime('%Y-%m'),kwh_needed, time.time() - start)
+print(kwh_needed, time.time() - start)
 
 
 # print('\n\n\nTHRESHOLD CALCULATIONS')
