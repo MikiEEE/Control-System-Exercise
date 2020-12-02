@@ -27,8 +27,8 @@ def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=Non
 		battery = Battery(kwh_storage,kwh_storage,threshold)
 		for kwh_usage in data:
 			try:
-				charge = battery.charge(kwh_usage)
-				discharge = battery.discharge(kwh_usage)
+				battery.charge(kwh_usage)
+				battery.discharge(kwh_usage)
 				usage += 1
 			except Max_Discharge as e:
 				break
@@ -43,17 +43,15 @@ def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=Non
 		return answer
 
 
-def find_threshold_iterative(data,kwh_storage,precision=1,floor=None,ceiling=None):
+def find_threshold_iterative(data,kwh_storage,precision=1):
 	
 	if kwh_storage < 0:
 		return -1
 
-	if not floor:
-		floor = 0
-	if not ceiling:
-		ceiling = np.amax(data)
-	step = int(math.log10(ceiling))
-	step = 10**(step)
+	floor = 0
+	ceiling = np.amax(data)
+	step = 10 ** int(math.log10(ceiling))
+
 	answer = -1
 	while step >= precision: # x log(ceiling) - log(precision)
 		for threshold in np.arange(floor,ceiling,step): #x 10
@@ -61,8 +59,8 @@ def find_threshold_iterative(data,kwh_storage,precision=1,floor=None,ceiling=Non
 			battery = Battery(kwh_storage,kwh_storage,threshold)
 			for kwh_usage in data: #x n
 				try:
-					charge = battery.charge(kwh_usage)
-					discharge = battery.discharge(kwh_usage)
+					battery.charge(kwh_usage)
+					battery.discharge(kwh_usage)
 					usage += 1
 				except Max_Discharge as e:
 					break
@@ -106,21 +104,23 @@ def find_minimum_capacity_iterative(data,threshold,c_precision=1,t_precision=1):
 		return -1
 	
 	step = 10**int(math.log10(sum(data)))
-
 	kwh_storage = 0
 	temp = -1
 
 	cont = True
 	while cont:#X log(sum) - log(tolerance)
-		temp = find_threshold_iterative(data,kwh_storage,t_precision) 
+		
+		temp = find_threshold_recursive(data,kwh_storage,t_precision) 
 		while temp == -1 or temp > threshold: #X10
 			kwh_storage += step
-			temp = find_threshold_iterative(data,kwh_storage,t_precision) #klog(n)
+			temp = find_threshold_recursive(data,kwh_storage,t_precision) #klog(n)
+
 		if step > c_precision:
 			kwh_storage = kwh_storage - step
 			step = calculate_new_step(step)
 		else:
 			cont = False
+
 	return kwh_storage
 
 
