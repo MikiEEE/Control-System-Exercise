@@ -3,7 +3,7 @@ import csv
 import numpy as np
 import math
 import time
-
+from Errors import Max_Discharge
 sys.path.append('..')
 from models.Battery import Battery
 
@@ -217,7 +217,7 @@ start = time.time()
 # print('V1:\n',threshold,'\n', time.time() - start,'seconds')
 
 start = time.time()
-threshold = find_threshold_2(consumption,step,1000,.1)
+threshold = find_threshold_2(consumption,step,100,.1)
 print('V2:\n',threshold,'\n', time.time() - start,'seconds')
 
 

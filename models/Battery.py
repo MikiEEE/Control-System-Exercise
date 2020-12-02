@@ -1,6 +1,3 @@
-import sys
-sys.path.append('..')
-
 from Errors import Max_Discharge
 
 class Battery():
