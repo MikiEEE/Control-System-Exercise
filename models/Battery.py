@@ -2,15 +2,14 @@ from Errors import Max_Discharge
 
 class Battery():
 
-    def __init__(self,current_store,max_store,threshold):
+    def __init__(self,current_store,max_store):
         self.kwh_store = current_store
         self.max = max_store
-        self.threshold = threshold
 
 
-    def discharge(self, total_usage):
-        if total_usage > self.threshold:
-            drain = total_usage - self.threshold
+    def discharge(self, total_usage, threshold):
+        if total_usage > threshold:
+            drain = total_usage - threshold
 
             if self.kwh_store - drain >= 0:
                 self.kwh_store -= drain
@@ -20,9 +19,9 @@ class Battery():
         return 0
 
 
-    def charge(self, total_usage):
-        if total_usage < self.threshold:
-            charge = self.threshold - total_usage
+    def charge(self, total_usage, threshold):
+        if total_usage < threshold:
+            charge = threshold - total_usage
             if self.kwh_store == self.max:
                 return 0
             elif charge + self.kwh_store > self.max:
@@ -33,3 +32,8 @@ class Battery():
                 self.kwh_store += charge
                 return charge
         return 0
+
+
+    def refresh(self):
+        self.kwh_store = self.max
+        return

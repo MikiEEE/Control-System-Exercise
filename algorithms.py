@@ -1,12 +1,9 @@
 import numpy as np
 import math
+from data_util.Numbers import calculate_new_step
 from models.Battery import Battery
 from Errors import Max_Discharge
 
-def calculate_new_step(current_step):
-	power = int(math.log10(current_step))
-	power -= 1
-	return 10**power
 
 
 def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=None,step=None):
@@ -22,13 +19,14 @@ def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=Non
 		step = 10 ** int(math.log10(ceiling))
 
 	answer = -1
+	battery = Battery(kwh_storage,kwh_storage)
 	for threshold in np.arange(floor,ceiling,step):
 		usage = int()
-		battery = Battery(kwh_storage,kwh_storage,threshold)
+		battery.refresh()
 		for kwh_usage in data:
 			try:
-				battery.charge(kwh_usage)
-				battery.discharge(kwh_usage)
+				battery.charge(kwh_usage,threshold)
+				battery.discharge(kwh_usage,threshold)
 				usage += 1
 			except Max_Discharge as e:
 				break
@@ -53,14 +51,15 @@ def find_threshold_iterative(data,kwh_storage,precision=1):
 	step = 10 ** int(math.log10(ceiling))
 
 	answer = -1
+	battery = Battery(kwh_storage,kwh_storage)
 	while step >= precision: # x log(ceiling) - log(precision)
 		for threshold in np.arange(floor,ceiling,step): #x 10
 			usage = int()
-			battery = Battery(kwh_storage,kwh_storage,threshold)
+			battery.refresh()
 			for kwh_usage in data: #x n
 				try:
-					battery.charge(kwh_usage)
-					battery.discharge(kwh_usage)
+					battery.charge(kwh_usage,threshold)
+					battery.discharge(kwh_usage,threshold)
 					usage += 1
 				except Max_Discharge as e:
 					break

@@ -22,3 +22,15 @@ def groom_data(csv_obj):
 	    count +=1
 	consumption = [float(num) for num in consumption]
 	return timestamps, consumption
+
+
+def write_rows(full_path:str,data:list,fields:list=None):
+
+	with open(full_path,'w',newline='') as csvfile:
+		writer = csv.writer(csvfile)
+
+		if fields:
+			writer.writerow(fields)
+		
+		writer.writerows(data)
+	return
