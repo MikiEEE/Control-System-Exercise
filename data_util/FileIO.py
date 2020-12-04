@@ -1,8 +1,7 @@
-
 import csv 
 
 
-def parse_csv(filename):
+def parse_csv(filename:str):
     result = list()
     with open(filename) as file:
         csv_reader = csv.reader(file, delimiter=',')
@@ -11,7 +10,7 @@ def parse_csv(filename):
     return result
 
 
-def groom_data(csv_obj):
+def groom_data(csv_obj:iter):
 	timestamps = list()
 	consumption = list()
 	count = 0
@@ -34,3 +33,12 @@ def write_rows(full_path:str,data:list,fields:list=None):
 		
 		writer.writerows(data)
 	return
+
+def write_to_text_file(full_path:str,data:list):
+	
+	with open(full_path,'w') as file:
+		file.writelines(data)
+	return
+
+
+

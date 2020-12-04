@@ -1,8 +1,11 @@
-from Errors import Max_Discharge
+from Errors import Max_Discharge, Over_Charge
 
 class Battery():
 
     def __init__(self,current_store,max_store):
+        if current_store > max_store:
+            raise Over_Charge()
+
         self.kwh_store = current_store
         self.max = max_store
 
@@ -13,7 +16,7 @@ class Battery():
 
             if self.kwh_store - drain >= 0:
                 self.kwh_store -= drain
-                return drain * -1
+                return drain
             else:
                 raise Max_Discharge()
         return 0
