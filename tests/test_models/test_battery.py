@@ -1,10 +1,10 @@
 import nose
-
 import sys
+
 sys.path.append('../..')
 
-from models.Battery import Battery
-from Errors import Max_Discharge, Over_Charge
+from Interview.models.Battery import Battery
+from Interview.Errors import Max_Discharge, Over_Charge
 
 
 @nose.tools.raises(Over_Charge)

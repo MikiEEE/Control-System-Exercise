@@ -2,8 +2,8 @@ import sys
 
 sys.path.append('..')
 
-from Errors import Max_Discharge
-from models.Battery import Battery
+from Interview.Errors import Max_Discharge
+from Interview.models.Battery import Battery
 
 
 def run_sim(data:iter, threshold:float, capacity:float):

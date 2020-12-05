@@ -1,4 +1,5 @@
-from Errors import Max_Discharge, Over_Charge
+
+from ..Errors import Max_Discharge, Over_Charge
 
 class Battery():
 

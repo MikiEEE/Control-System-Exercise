@@ -5,14 +5,14 @@ import time
 
 
 #Function Imports
-from data_util.Numbers import round_decimals_up
-from algorithms import find_threshold_recursive, find_minimum_capacity_iterative
-from data_util.FileIO import parse_csv, groom_data, \
+from Interview.data_util.Numbers import round_decimals_up
+from Interview.algorithms import find_threshold_recursive, find_minimum_capacity_iterative
+from Interview.data_util.FileIO import parse_csv, groom_data, \
 								write_rows, write_to_text_file
 
 #Class Imports 
-from models.Battery import Battery
-from Errors import Max_Discharge, Over_Charge
+from Interview.models.Battery import Battery
+from Interview.Errors import Max_Discharge, Over_Charge
 
 
 

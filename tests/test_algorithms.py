@@ -1,18 +1,17 @@
-import sys
 import os
 import nose
 import math
 import numpy
 import pandas
-
+import sys
 
 sys.path.append('..')
 
-from algorithms import find_threshold_recursive, find_threshold_iterative, \
+from Interview.algorithms import find_threshold_recursive, find_threshold_iterative, \
 						find_minimum_capacity_iterative, find_minimum_capacity_recursive
 
-from data_util.Numbers import round_decimals_up
-from data_util.FileIO import parse_csv, groom_data, \
+from Interview.data_util.Numbers import round_decimals_up
+from Interview.data_util.FileIO import parse_csv, groom_data, \
 								write_rows, write_to_text_file
 
 from helpers import run_sim

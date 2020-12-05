@@ -1,10 +1,10 @@
 import numpy as np
 import math
 
-from data_util.Numbers import calculate_new_step
+from .data_util.Numbers import calculate_new_step
 
-from models.Battery import Battery
-from Errors import Max_Discharge
+from .models.Battery import Battery
+from .Errors import Max_Discharge
 
 
 
