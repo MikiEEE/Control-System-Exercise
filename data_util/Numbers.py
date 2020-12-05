@@ -12,6 +12,7 @@ def round_decimals_up(number:float, decimals:int=2):
             the final answer.
     @return - float - Number rounded up to the nearest decimal place.
     '''
+
     if not isinstance(decimals, int):
         raise TypeError("decimal places must be an integer")
     elif decimals < 0:
@@ -29,6 +30,7 @@ def calculate_new_step(current_step:float):
             decreased magnitude of 10.
     @return - int - New iteration step. 
     '''
-	power = int(math.log10(current_step))
-	power -= 1
-	return 10**power
+    
+    power = int(math.log10(current_step))
+    power -= 1
+    return 10**power
