@@ -9,6 +9,7 @@ from Errors import Max_Discharge, Over_Charge
 
 @nose.tools.raises(Over_Charge)
 def test_init():
+	#Initiate a battery object in the normal case.
 	current_charge = 50
 	max_charge = 100
 	battery = Battery(current_charge,max_charge)
@@ -53,6 +54,7 @@ def test_charge():
 	threshold = 25
 	usage = 15
 
+	#Initiate a discharged Battery object.
 	battery = Battery(current_charge,max_charge)
 
 	#Assert the battery is discharged.

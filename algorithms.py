@@ -9,6 +9,19 @@ from Errors import Max_Discharge
 
 
 def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=None,step=None):
+	'''
+	@function find_threshold_recursive() - Finds the power draw threshold a battery will 
+			provide to a degree of precision. 
+	@param kwh_storage - float - Battery capcity in KWH. 
+	@param precision - float - Default to 1. The Lowest magnitude of 10 in the result
+			calculation.
+	@param floor - float - Default to None. The lowest possible threshold used in a given 
+			iteration of threshold approximation.
+	@param ceiling - float - Default to None. The highest possible threshold used in a given 
+			iteration of threshold approximation.
+	@param step - float - The step size of each iteration.
+	@return - float - The threshold of the battery.
+	'''
 	
 	if kwh_storage  < 0:
 		return -1
@@ -46,7 +59,15 @@ def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=Non
 
 
 def find_threshold_iterative(data,kwh_storage,precision=1):
-	
+	'''
+	@function find_threshold_recursive() - Finds the power draw threshold a battery will 
+			provide to a degree of precision. 
+	@param precision - float - Default to 1. The Lowest magnitude of 10 in the result
+			calculation.
+	@param kwh_storage - float - Battery capcity in KWH. 
+	@return - float - The threshold of the battery.
+	'''
+
 	if kwh_storage < 0:
 		return -1
 	if kwh_storage == 0:
@@ -113,12 +134,12 @@ def find_minimum_capacity_iterative(data,threshold,c_precision=1,t_precision=1):
 	temp = -1
 
 	cont = True
-	while cont:#X log(sum) - log(tolerance)
+	while cont:
 		
 		temp = find_threshold_recursive(data,kwh_storage,t_precision) 
-		while temp == -1 or temp > threshold: #X10
+		while temp == -1 or temp > threshold: 
 			kwh_storage += step
-			temp = find_threshold_recursive(data,kwh_storage,t_precision) #klog(n)
+			temp = find_threshold_recursive(data,kwh_storage,t_precision)
 
 		if step > c_precision:
 			kwh_storage = kwh_storage - step
