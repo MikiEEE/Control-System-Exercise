@@ -12,6 +12,8 @@ def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=Non
 	
 	if kwh_storage  < 0:
 		return -1
+	if kwh_storage == 0:
+		return sum(data)
 	
 	if not ceiling:
 		ceiling = np.amax(data)
@@ -47,6 +49,8 @@ def find_threshold_iterative(data,kwh_storage,precision=1):
 	
 	if kwh_storage < 0:
 		return -1
+	if kwh_storage == 0:
+		return sum(data)
 
 	floor = 0
 	ceiling = np.amax(data)

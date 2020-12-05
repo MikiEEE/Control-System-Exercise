@@ -69,14 +69,16 @@ def test_find_threshold_recursive():
 		assert run_sim(data,threshold,capacity)
 
 
+
 def test_find_threshold_iterative():
 	data = setUp()
 	capacities = range(0,10**3,50)
-	precision = 1
-	
+	precision = .001
+
 	for capacity in capacities:
 		threshold = find_threshold_iterative(data,capacity,precision)
-		threshold = round_decimals_up(threshold,0)
+		threshold = round_decimals_up(threshold,3)
+		print(capacity, threshold)
 		assert run_sim(data,threshold,capacity)
 
 

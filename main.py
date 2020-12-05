@@ -10,18 +10,11 @@ from algorithms import find_threshold_recursive, find_minimum_capacity_iterative
 from data_util.FileIO import parse_csv, groom_data, \
 								write_rows, write_to_text_file
 
-
-
 #Class Imports 
 from models.Battery import Battery
 from Errors import Max_Discharge, Over_Charge
 
 
-
-
-#Rounding issue, ceiling up done
-#Tests
-#data in csv
 
 
 
@@ -50,10 +43,11 @@ endDate = df.Date.iloc[-1]
 capacity_by_month = list()
 threshold_by_month = list()
 
-starttime = time.time()
+
 
 #Monthly Operations.
 print('Beginning Monthly Operations...\n')
+starttime = time.time()
 currentDate = startDate
 while currentDate.strftime('%Y-%m') != endDate.strftime('%Y-%m'):
 	data = df.loc[(df.Date.dt.month==currentDate.month) & (df.Date.dt.year==currentDate.year)].Usage
@@ -74,16 +68,20 @@ while currentDate.strftime('%Y-%m') != endDate.strftime('%Y-%m'):
 
 	capacity_by_month.append(result)
 
+	Letter = currentDate.strftime("%B")[0]
+	print(Letter,end='')
+	sys.stdout.flush()
+
 	currentDate = (currentDate + pandas.offsets.MonthBegin()).date()
 
-	print('.',end='')
-	sys.stdout.flush()
-	
+
 timer = time.time() - starttime
 timer = round(timer,1)
 print('\n\nFinished Monthly Operations...{} seconds'.format(timer))
 
+
 print('\n')
+
 
 #Total Data Operations.
 starttime = time.time()
@@ -96,7 +94,9 @@ timer = time.time() - starttime
 timer = round(timer,1)
 print('Finished Full Data Set Analysis...{} seconds'.format(timer))
 
+
 print('\n')
+
 
 print('Writing to files...')
 #Output Minimum Threshold Values to CSV.
