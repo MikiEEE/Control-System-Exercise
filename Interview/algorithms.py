@@ -8,7 +8,28 @@ from .Errors import Max_Discharge
 
 
 
-def find_threshold_bin(data,kwh_storage,floor=None,ceiling=None):
+def find_threshold_bin(data,kwh_storage,precision=1,floor=None,ceiling=None):
+	'''
+	@function find_threshold_bin() - Finds the power draw threshold a battery will 
+			provide to a degree of precision. 
+		*NOTE* - While its results do pass testing, this function does not produce
+				 the same results as its' base ten cousins. Off by about .0001.  
+				 & 
+				 While it it has been observed to be faster, for the sake of this excercise 
+				 I chose not to use it. 
+				 I assume this is happening for reasons related to why represnting .1 
+				 in binary takes so many digits. 
+	@param data - list(float) - Power usage data in KWH.
+	@param kwh_storage - float - Battery capcity in KWH. 
+	@param precision - float - Default to 1. The Lowest magnitude of 10 in the result
+			calculation.
+	@param floor - float - Default to None. The lowest possible threshold used in a given 
+			iteration of threshold approximation.
+	@param ceiling - float - Default to None. The highest possible threshold used in a given 
+			iteration of threshold approximation.
+	@return - float - The threshold of the battery.
+	'''
+
 	if kwh_storage  < 0:
 		return -1
 	if kwh_storage == 0:
@@ -19,7 +40,6 @@ def find_threshold_bin(data,kwh_storage,floor=None,ceiling=None):
 	if not floor:
 		floor = 0
 
-	precision = 10
 	mid = ((ceiling-floor) / 2) + floor
 
 	answer = -1
@@ -45,10 +65,10 @@ def find_threshold_bin(data,kwh_storage,floor=None,ceiling=None):
 		elif answer == mid:
 			ceiling = mid
 
-		if round(floor) != round(ceiling):
-			return find_threshold_bin(data,kwh_storage,floor,ceiling)
-		else:
-			return answer
+		current_precision = int(math.log10(ceiling - floor))
+		if current_precision > int(math.log10(precision)):
+			return find_threshold_bin(data,kwh_storage,precision,floor,ceiling)
+
 	return answer
 
 
