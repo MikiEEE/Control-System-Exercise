@@ -34,6 +34,7 @@ def write_rows(full_path:str,data:list,fields:list=None):
 		writer.writerows(data)
 	return
 
+
 def write_to_text_file(full_path:str,data:list):
 	
 	with open(full_path,'w') as file:
