@@ -40,3 +40,4 @@ class Battery():
     def refresh(self):
         self.kwh_store = self.max
         return
+

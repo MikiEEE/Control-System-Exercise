@@ -85,11 +85,14 @@ print('\n')
 
 #Total Data Operations.
 starttime = time.time()
+
 print('Beginning Full Data Set Analysis...')
 data = df.Usage
+
 capacity = find_minimum_capacity_iterative(data,50,.001,10)
 capacity = round_decimals_up(capacity,3)
 capacity = str(capacity)
+
 timer = time.time() - starttime
 timer = round(timer,1)
 print('Finished Full Data Set Analysis...{} seconds'.format(timer))

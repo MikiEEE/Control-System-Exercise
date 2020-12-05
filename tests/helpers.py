@@ -32,3 +32,5 @@ def run_sim(data:iter, threshold:float, capacity:float):
 		except Max_Discharge as e:
 			return False
 	return True
+
+	
