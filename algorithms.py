@@ -79,11 +79,11 @@ def find_threshold_iterative(data,kwh_storage,precision=1):
 
 	answer = -1
 	battery = Battery(kwh_storage,kwh_storage)
-	while step >= precision: # x log(ceiling) - log(precision)
-		for threshold in np.arange(floor,ceiling,step): #x 10
+	while step >= precision:
+		for threshold in np.arange(floor,ceiling,step):
 			usage = int()
 			battery.refresh()
-			for kwh_usage in data: #x n
+			for kwh_usage in data:
 				try:
 					battery.charge(kwh_usage,threshold)
 					battery.discharge(kwh_usage,threshold)
@@ -100,7 +100,22 @@ def find_threshold_iterative(data,kwh_storage,precision=1):
 
 
 def find_minimum_capacity_recursive(data,threshold,c_precision=1,t_precision=1,value=None,step=None):
-	
+	'''
+	@function find_minimum_capacity_recursive() - Finds the minimum capacity of a battery 
+			needed for the power usage to stay at or belwo a given threshold.
+	@param data - list(float) - List of floats representing power usage in KWH. 
+	@param threshold - float - The threshold a battery needs to provide.
+	@param c_precsion - float - The precision of the battery capacity. Should be placed as
+			a power of ten. ex: 10**-1 or .1 . 
+	@param t_precision - float - The precision of the threshold. Should be placed as
+			a power of ten. ex: 10**-1 or .1 . 
+	@param value - Value passed from function call to function call in recursion, user should
+			not need to use it. 
+	@param step - float - Power of ten passed from funciton call to function call in recursion, 
+		user should not need to use it.
+	@return - float - Storage capacity needed in KWH.
+	'''
+
 	if threshold < 0:
 		return -1
 
@@ -125,7 +140,18 @@ def find_minimum_capacity_recursive(data,threshold,c_precision=1,t_precision=1,v
 
 
 def find_minimum_capacity_iterative(data,threshold,c_precision=1,t_precision=1):
-	
+	'''
+	@function find_minimum_capacity_iterative() - Finds the minimum capacity of a battery 
+			needed for the power usage to stay at or belwo a given threshold.
+	@param data - list(float) - List of floats representing power usage in KWH. 
+	@param threshold - float - The threshold a battery needs to provide.
+	@param c_precsion - float - The precision of the battery capacity. Should be placed as
+			a power of ten. ex: 10**-1 or .1 . 
+	@param t_precision - float - The precision of the threshold. Should be placed as
+			a power of ten. ex: 10**-1 or .1 . 
+	@return - float - Storage capacity needed in KWH.
+	'''
+
 	if threshold < 0: 
 		return -1
 	
