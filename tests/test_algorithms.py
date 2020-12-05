@@ -8,7 +8,8 @@ import sys
 sys.path.append('..')
 
 from Interview.algorithms import find_threshold_recursive, find_threshold_iterative, \
-						find_minimum_capacity_iterative, find_minimum_capacity_recursive
+						find_threshold_bin, find_minimum_capacity_iterative,\
+						find_minimum_capacity_recursive
 
 from Interview.data_util.Numbers import round_decimals_up
 from Interview.data_util.FileIO import parse_csv, groom_data, \
@@ -34,6 +35,20 @@ def setUp():
 	#Change Get Data from all of the Januarys.
 	data = df.loc[(df.Date.dt.month==1)].Usage
 	return [float(usage) for usage in data]
+
+
+def test_find_minimum_threshold_bin():
+	data = setUp()
+	max_usage = max(data)
+	min_usage = min(data)
+
+	step = int(math.log10(max_usage))
+	thresholds = numpy.arange(max_usage,min_usage,step)
+
+	for threshold in thresholds:
+		capacity = find_minimum_capacity_bin(data,threshold)
+		capacity = round_decimals_up(capacity,3)
+		assert run_sim(data,threshold,capacity)
 
 
 def test_find_minimum_capacity_iterative():

@@ -8,10 +8,55 @@ from .Errors import Max_Discharge
 
 
 
+def find_threshold_bin(data,kwh_storage,floor=None,ceiling=None):
+	if kwh_storage  < 0:
+		return -1
+	if kwh_storage == 0:
+		return sum(data)
+
+	if not ceiling:
+		ceiling = np.amax(data)
+	if not floor:
+		floor = 0
+
+	precision = 10
+	mid = ((ceiling-floor) / 2) + floor
+
+	answer = -1
+	battery = Battery(kwh_storage,kwh_storage)
+	for threshold in [mid,ceiling]:
+		usage = int()
+		battery.refresh()
+		for kwh_usage in data:
+			try:
+				battery.charge(kwh_usage,threshold)
+				battery.discharge(kwh_usage,threshold)
+				usage += 1
+			except Max_Discharge as e:
+				break
+		if usage == len(data):
+			answer = threshold
+			break
+
+	if answer != -1:
+		
+		if answer == ceiling:
+			floor = mid
+		elif answer == mid:
+			ceiling = mid
+
+		if round(floor) != round(ceiling):
+			return find_threshold_bin(data,kwh_storage,floor,ceiling)
+		else:
+			return answer
+	return answer
+
+
 def find_threshold_recursive(data,kwh_storage,precision=1,floor=None,ceiling=None,step=None):
 	'''
 	@function find_threshold_recursive() - Finds the power draw threshold a battery will 
 			provide to a degree of precision. 
+	@param data - list(float) - Power usage data in KWH.
 	@param kwh_storage - float - Battery capcity in KWH. 
 	@param precision - float - Default to 1. The Lowest magnitude of 10 in the result
 			calculation.
@@ -62,6 +107,7 @@ def find_threshold_iterative(data,kwh_storage,precision=1):
 	'''
 	@function find_threshold_recursive() - Finds the power draw threshold a battery will 
 			provide to a degree of precision. 
+	@param data - list(float) - Power usage data in KWH.
 	@param precision - float - Default to 1. The Lowest magnitude of 10 in the result
 			calculation.
 	@param kwh_storage - float - Battery capcity in KWH. 
