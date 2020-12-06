@@ -21,11 +21,10 @@ from Interview.Errors import Max_Discharge, Over_Charge
 #Groom the data.
 filename = 'load_data.csv'
 data = parse_csv(filename)
-
+timestamps, consumption = groom_data(data)
 
 
 #Create Data Frame Categories.
-timestamps, consumption = groom_data(data)
 data = {'Date':timestamps, 'Usage':consumption}
 df = pandas.DataFrame(data)
 
