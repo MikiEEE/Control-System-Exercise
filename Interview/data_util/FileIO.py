@@ -9,12 +9,12 @@ def parse_csv(full_path:str):
 	@return list(str) - List of lines read.
 	'''
 
-    result = list()
-    with open(filename) as file:
-        csv_reader = csv.reader(file, delimiter=',')
-        for row in csv_reader:
-            result.append(row)
-    return result
+	result = list()
+	with open(full_path) as file:
+		csv_reader = csv.reader(file, delimiter=',')
+		for row in csv_reader:
+			result.append(row)
+	return result
 
 
 def groom_data(csv_obj:iter):
