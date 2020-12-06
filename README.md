@@ -9,7 +9,7 @@ The objectives are togglable with using the following tags respectively:
   
 Each of these objectives are default on.  
 They can be toggled off by passing in a False boolean.  
-ex: '-ob1 F'  
+ex: $ python main.py load_data.csv -ob1 F -ob2 F -ob3 F
 
 # Control System Interview Exercise
 We've prepared an exercise to help with the technical evaluation portion of our interview process, while also providing an idea of the data that you'd be dealing with on a day-to-day basis. We also use this exercise to facilitate a discussion during the on-site interview process, so please come prepared to discuss your solution to the exercise in more detail.

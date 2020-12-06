@@ -153,7 +153,7 @@ except IOError as e:
 
 
 try:
-	print('Writing to file(s)...')
+	print('Writing to file(s)...\n')
 
 	files_written = list()
 
@@ -181,8 +181,8 @@ try:
 		write_to_text_file(path,data)
 		files_written.append(path)
 	
-	files = ', '.join(files_written)
-	print('File(s) Written: {}.'.format(files))
+	files = ',\n '.join(files_written)
+	print('File(s) Written: \n {}'.format(files))
 
 except Exception as e:
 	Error_Msg = 'There was an error writting to one of the files'
