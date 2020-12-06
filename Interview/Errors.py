@@ -14,3 +14,10 @@ class Over_Charge(Exception):
 	than it's capacity.
 	'''
 	pass
+
+
+class Input_Format(Exception):
+	'''
+	Raised when the format of the input file is not 
+	correct.
+	'''

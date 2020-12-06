@@ -1,13 +1,22 @@
 import csv 
+import os
 
+from dateutil.parser import parse
+
+from Interview.Errors import Input_Format
 
 def parse_csv(full_path:str):
 	'''
 	@function parse_csv() - Parses the csv file and 
 			returns a list of rows.
+		*Raises IOError if file does not exist.
 	@param full_path - str - Full path of the file to be opened.
 	@return list(str) - List of lines read.
 	'''
+
+	if not os.path.isfile(full_path):
+		Error_Msg = 'File {} is not found.'.format(full_path)
+		raise IOError(Error_Msg)
 
 	result = list()
 	with open(full_path) as file:
@@ -15,6 +24,23 @@ def parse_csv(full_path:str):
 		for row in csv_reader:
 			result.append(row)
 	return result
+
+
+def validate_date(date):
+	try: 
+	    parse(date)
+	except ValueError:
+		return False
+	return True
+
+
+def validate_usage(usage):
+	try:
+		float(usage)
+	except ValueError:
+		return False
+	return True
+
 
 
 def groom_data(csv_obj:iter):
@@ -28,12 +54,24 @@ def groom_data(csv_obj:iter):
 
 	timestamps = list()
 	consumption = list()
-	count = 0
-	for row in csv_obj:
-	    if count != 0:
-	        timestamps.append(row[0])
-	        consumption.append(row[1])
-	    count +=1
+
+	for row in csv_obj[1:]:
+	
+		if len(row) != 2:
+			Error_Msg = 'Input file is not in correct format.'
+			raise Input_Format(Error_Msg)
+		
+		if not validate_date(row[0]):
+			Error_Msg = 'Time Stamp is not in correct format.'
+			raise ValueError(Error_Msg)
+
+		if not validate_usage(row[1]):
+			Error_Msg = 'Usage data is not being interpreted as a number.'
+			raise ValueError(Error_Msg)
+
+		timestamps.append(row[0])
+		consumption.append(row[1])
+
 	consumption = [float(num) for num in consumption]
 	return timestamps, consumption
 
