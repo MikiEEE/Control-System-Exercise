@@ -1,3 +1,15 @@
+##Response Usage
+
+To run with command $ python main.py load_data.csv in the projects directory.
+
+The objectives are togglable with using the following tags respectively:
+'-ob1' - For objective 1.
+'-ob2' - For objective 2.
+'-ob3' - For objective 3.
+
+Each of these objectives are default on. They can be toggled off by passing in 
+a False boolean. ex: '-ob1 F'
+
 # Control System Interview Exercise
 We've prepared an exercise to help with the technical evaluation portion of our interview process, while also providing an idea of the data that you'd be dealing with on a day-to-day basis. We also use this exercise to facilitate a discussion during the on-site interview process, so please come prepared to discuss your solution to the exercise in more detail.
 
