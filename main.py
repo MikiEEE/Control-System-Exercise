@@ -19,7 +19,7 @@ from Interview.Errors import Max_Discharge, Over_Charge
 
 
 #Parse Arguements.
-parser = argparse.ArgumentParser(description='')
+parser = argparse.ArgumentParser(description='ETB interview challenge.')
 parser.add_argument('Path', type=str,
                        		help='Path of data file.')
 parser.add_argument('-ob1','--objective1',type=str2bool, default=True,
