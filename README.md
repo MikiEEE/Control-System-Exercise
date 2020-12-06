@@ -1,12 +1,12 @@
 ## Response Usage
 
-To run with command $ python main.py load_data.csv in the projects directory.
+To run with command $ python main.py load_data.csv in the project's directory.
 
-The objectives are togglable with using the following tags respectively:
-'-ob1' - For objective 1.
-'-ob2' - For objective 2.
-'-ob3' - For objective 3.
-
+The objectives are togglable with using the following tags respectively:  
+'-ob1' - For objective 1.  
+'-ob2' - For objective 2.  
+'-ob3' - For objective 3.  
+  
 Each of these objectives are default on. They can be toggled off by passing in 
 a False boolean. ex: '-ob1 F'
 
