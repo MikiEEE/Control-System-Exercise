@@ -19,7 +19,7 @@ be had within a range of 4.5 - 6.5 seconds on the machine under test.
 
 ## Test  
 
-To test go into the tests/ directory within the project folder and enter '$ nosetests'.  
+To test go into the tests/ directory within the project folder and enter $ nosetests.  
 
 
 # Control System Interview Exercise
