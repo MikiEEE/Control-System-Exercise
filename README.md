@@ -13,7 +13,7 @@ Each of these objectives are default on.
 They can be toggled off by passing in a False boolean.  
 ex: $ python main.py load_data.csv -ob1 F -ob2 F -ob3 F
 
-### Speed
+## Speed
 Excluding data validation, results for all the objectives were able to  
 be had within a range of 4.5 - 6.5 seconds on the machine under test.
 
