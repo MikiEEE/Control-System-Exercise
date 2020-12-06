@@ -1,4 +1,6 @@
-## Response Usage
+# Response  
+
+## Usage
 
 To run with command $ python main.py load_data.csv in the project's directory.
 
@@ -10,6 +12,15 @@ The objectives are togglable with using the following tags respectively:
 Each of these objectives are default on.  
 They can be toggled off by passing in a False boolean.  
 ex: $ python main.py load_data.csv -ob1 F -ob2 F -ob3 F
+
+### Speed
+Excluding data validation, results for all the objectives were able to  
+be had within a range of 4.5 - 6.5 seconds on the machine under test.
+
+## Test  
+
+To test go into the tests/ directory within the project folder and enter '$ nosetests'.  
+
 
 # Control System Interview Exercise
 We've prepared an exercise to help with the technical evaluation portion of our interview process, while also providing an idea of the data that you'd be dealing with on a day-to-day basis. We also use this exercise to facilitate a discussion during the on-site interview process, so please come prepared to discuss your solution to the exercise in more detail.

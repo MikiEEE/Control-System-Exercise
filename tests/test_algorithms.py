@@ -145,13 +145,13 @@ def test_ensure_threshold_consistency():
 	#result given the same parameters.
 	for capacity in capacities:
 		threshold1 = find_threshold_iterative(data,capacity,precision)
-		threshold1 = round_decimals_up(threshold1,2)
+		threshold1 = round_decimals_up(threshold1,1)
 
 		threshold2 = find_threshold_recursive(data,capacity,precision)
-		threshold2 = round_decimals_up(threshold2,2)
+		threshold2 = round_decimals_up(threshold2,1)
 
 		threshold3 = find_threshold_bin(data,capacity,hex0_0006)
-		threshold3 = round_decimals_up(threshold3,2)
+		threshold3 = round_decimals_up(threshold3,1)
 
 		print(capacity,threshold1,threshold2,threshold3)
 
