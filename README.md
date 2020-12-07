@@ -10,7 +10,7 @@ I tried several different approaches to solve the problem.
 
 `main.py` has the final usage of the algorithms that are run for the objectives.
 
-## Prerequesites
+## Prerequisites
 * Python Version: `3.6.x`  
 * Install Requirements: `pip3 install -r requirements.txt`
 
