@@ -5,6 +5,7 @@ from dateutil.parser import parse
 
 from Interview.Errors import Input_Format
 
+
 def parse_csv(full_path:str):
 	'''
 	@function parse_csv() - Parses the csv file and 
