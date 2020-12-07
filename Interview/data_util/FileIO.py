@@ -26,7 +26,14 @@ def parse_csv(full_path:str):
 	return result
 
 
-def validate_date(date):
+def validate_date(date:str):
+	'''
+	@function validate_date - Makes sure the string passed in 
+			can be parsed into a datetime format.
+	@param date - str - String to be validated. 
+	@return - bool - True if the date can be parsed and False
+		if the date cannot be parsed.
+	'''
 	try: 
 	    parse(date)
 	except ValueError:
@@ -34,7 +41,14 @@ def validate_date(date):
 	return True
 
 
-def validate_usage(usage):
+def validate_usage(usage:str):
+	'''
+	@function validate_usage - Makes sure that the string passed in 
+			can be converted into a float. 
+	@param usage - str - String to be validated.
+	@return - bool - True if the string can be converted to a float 
+			and False if the string cannot be converted to a float.
+	'''
 	try:
 		float(usage)
 	except ValueError:
@@ -56,7 +70,7 @@ def groom_data(csv_obj:iter):
 	consumption = list()
 
 	for row in csv_obj[1:]:
-	
+
 		if len(row) != 2:
 			Error_Msg = 'Input file is not in correct format.'
 			raise Input_Format(Error_Msg)
