@@ -11,8 +11,9 @@ I tried several different approaches to solve the problem.
 `main.py` has the final usage of the algorithms that are run for the objectives.
 
 ## Prerequesites
-Python Version: `3.6.x`
+Python Version: `3.6.x`  
 Install Requirements: `pip3 install -r requirements.txt`
+
 ## Usage
 To run all objects use command `python main.py load_data.csv` in the project's directory.
 
