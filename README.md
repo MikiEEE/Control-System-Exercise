@@ -1,25 +1,37 @@
 # Response  
 
+## Algorithms
+I tried several different approaches to solve the problem.
+* find_minimum_capacity_iterative - Finds the minimum battery capacity with an iterative approach using base 10 step approximation.
+* find_minimum_capacity_recursive - Finds the minimum battery capacity with a recursive approach using base 10 step approximation.
+* find_threshold_iterative - Finds the minimum threshold given a battery capacity with an iterative approach using base 10 step approximation.
+* find_threshold_recursive - Finds the minimum threshold given a battery capacity with a recursive approach using base 10 step approximation.
+* find_threshold_bin - Finds the minimum threshold given a battery capacity with binary search approach.
+
+`main.py` has the final usage of the algorithms that are run for the objectives.
+
+## Prerequesites
+Python Version: `3.6.x`
+Install Requirements: `pip3 install -r requirements.txt`
 ## Usage
+To run all objects use command `python main.py load_data.csv` in the project's directory.
 
-To run with command $ python main.py load_data.csv in the project's directory.
-
-The objectives are togglable with using the following tags respectively:  
-'-ob1' - For objective 1.  
-'-ob2' - For objective 2.  
-'-ob3' - For objective 3.  
+Each of these objectives are default on.
+The objectives can be toggled off with using the following tags respectively:  
+`'-ob1 f'` - To turn off objective 1.  
+`'-ob2 f'` - To turn off objective 2.  
+`'-ob3 f'` - To turn off objective 3.  
   
-Each of these objectives are default on.  
-They can be toggled off by passing in a False boolean.  
-ex: $ python main.py load_data.csv -ob1 F -ob2 F -ob3 F
+ex: `python main.py load_data.csv -ob1 f -ob2 f -ob3 f`
 
 ## Speed
 Excluding data validation, results for all the objectives were able to  
 be had within a range of 4.5 - 6.5 seconds on the machine under test.
 
 ## Test  
-
-To test go into the tests/ directory within the project folder and enter $ nosetests .  
+1. Navigate to the `tests/` directory
+2. If `nose` is not already installed, run `pip3 install nose`
+3. Run `nosetests`  
 
 
 # Control System Interview Exercise
