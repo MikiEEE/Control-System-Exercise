@@ -18,6 +18,11 @@ def parse_csv(full_path:str):
 		Error_Msg = 'File {} is not found.'.format(full_path)
 		raise IOError(Error_Msg)
 
+	file_type = full_path.split('.')[-1]
+	if file_type != 'csv':
+		Error_Msg = 'Invalid file type. CSV required.'
+		raise IOError(Error_Msg)
+
 	result = list()
 	with open(full_path) as file:
 		csv_reader = csv.reader(file, delimiter=',')

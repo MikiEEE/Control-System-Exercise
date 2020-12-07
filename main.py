@@ -40,7 +40,7 @@ print('Validating data...')
 try:
 	data = parse_csv(filename)
 
-except  IOError as e:
+except IOError as e:
 	print(e)
 	sys.exit(0)
 
@@ -53,6 +53,7 @@ except ValueError as e:
 	print(e)
 	sys.exit(0)
 print('Data validated.\n')
+
 
 #Create Data Frame Categories.
 data = {'Date':timestamps, 'Usage':consumption}
