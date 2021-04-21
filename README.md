@@ -35,8 +35,7 @@ be had within a range of 4.5 - 6.5 seconds on the machine under test.
 3. Run `nosetests`  
 
 
-# Control System Interview Exercise
-We've prepared an exercise to help with the technical evaluation portion of our interview process, while also providing an idea of the data that you'd be dealing with on a day-to-day basis. We also use this exercise to facilitate a discussion during the on-site interview process, so please come prepared to discuss your solution to the exercise in more detail.
+# Control System Exercise
 
 ## Exercise
 You are given a CSV file with two columns. The first column is a timestamp, and the second column is a kWh value (a measurement of energy). Each row represents how much energy that has been consumed by the building in the 15-minute interval ending at the timestamp.
@@ -90,16 +89,4 @@ Please also provide an additional notes or details needed to setup or run your s
 * Please output the second objective result to a CSV file named `minimum_capacity.csv` using the same format provided in `sample_output.csv` except the results should be provided as a whole number (rounded).
 * Please output the third objective result in a text file named `50kwh_threshold_battery_size.txt`
 
-## Communication
 
-We’re big on communication and want to help you out in any way we can.
-
-* **Slack** - We use Slack for team communication and we think it’s great.  We’ll invite you to a Slack channel you can use to ask us questions or follow-up on anything related to the interview or assignment.
-
-* **Github** - We use Github for source control so we’ll share out a Github repo that you should use to source control any code, wiki notes or other information you might use as part of your research.  Feel free to commit often as you work through the problem.
-
-## Next Steps
-
-We’ll be in contact with you and will setup a follow-up onsite interview within the next two weeks (depending on your availability and schedule).  Before you come in for the on-site or remote interview, please push your results to Github including an updated README with any additional instructions we may need to run any code.   Also, please list any packages you have used in a `requirements.txt` file so that we can run your code.  When you attend the interview, we will provide you some feedback and have a discussion about your approach, and may also do some interactive coding with you.
-
-If you have any questions at any time please email us, or message us on Slack!
